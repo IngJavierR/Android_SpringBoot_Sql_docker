@@ -1,38 +1,50 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Build Android') {
             steps {
-                echo 'Building...'
-                sh 'env'
+                echo 'Building Android'
                 dir ('android/'){
                     sh 'echo sdk.dir=$ANDROID_HOME > local.properties'
                     sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses'
                     sh 'cp -R $ANDROID_HOME/licenses licenses/'
+                    echo 'Cleanning Android'
                     sh './gradlew build clean'
-                }
-            }
-        }
-        stage('Generate Apk') {
-            steps {
-                dir ('android/'){
+                    echo 'Unit test'
+                    sh './gradlew test'
+                    echo 'Generating apk'
                     sh './gradlew assembleDebug'
                 }
             }
         }
-        stage('Unit test'){
+        stage('Build Spring') {
             steps {
-                dir ('android/'){
-                    sh './gradlew test'
+                echo 'Building Webservice Spring boot'
+                dir ('webservice/'){
+                    sh 'mvn clean compile package'
+                }
+            }
+        }
+        stage('Running Backend') {
+            steps {
+                echo 'Running on Docker'
+                    sh 'docker-compose up'
+            }
+        }
+        stage('Liquibase') {
+            steps {
+                echo 'Building Webservice Spring boot'
+                dir ('database/liquibase/'){
+                    sh 'liquibase --changeLogFile="changesets/db.changelog-master.xml" update'
                 }
             }
         }
         stage('Expresso test') {
-            //when {
-                //not {
-                    //branch 'develop'
-                //}
-            //}
+            when {
+                not {
+                    branch 'develop'
+                }
+            }
             steps {
                 sh 'docker run --privileged -d -p 6080:6080 -p 5554:5554 -p 5555:5555 -e DEVICE=\'Samsung Galaxy S6\' --name ${BUILD_TAG} butomo1989/docker-android-x86-7.1.1'
                 sh '$ANDROID_HOME/platform-tools/adb kill-server'
@@ -45,9 +57,9 @@ pipeline {
             }
         }
         stage('Publish') {
-            //when {
-                //branch 'master'
-            //}
+            when {
+                branch 'master'
+            }
             steps {
                 sh 'curl "https://dashboard.applivery.com/api/builds" \
                     -X POST \
@@ -65,6 +77,7 @@ pipeline {
     post { 
         always { 
             deleteDir()
+            sh 'docker-compose down'
         }
         success {
             echo 'I succeeeded!'

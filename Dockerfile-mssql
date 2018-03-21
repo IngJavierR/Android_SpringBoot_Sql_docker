@@ -1,4 +1,4 @@
-FROM store/microsoft/mssql-server-linux:2017-GA
+FROM store/microsoft/mssql-server-linux:2017-latest
 
 ENV SA_PASSWORD=Admin12345 \
     ACCEPT_EULA=Y

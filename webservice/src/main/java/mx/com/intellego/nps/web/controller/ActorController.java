@@ -19,7 +19,7 @@ public class ActorController {
 	@Autowired
 	private ActorService actorService;
 	
-	@GetMapping(path="/add")
+	@GetMapping(path="/add/{name}/{lastName}")
 	public @ResponseBody String addActor(@RequestParam String name ,@RequestParam String lastName){
 		
 		Actor  actor = new Actor();

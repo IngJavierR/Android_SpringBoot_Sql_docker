@@ -1,20 +1,13 @@
 version: '3'
 services:
-  webservice:
+  spboot:
     build:
       context: .
-      dockerfile: "Dockerfile-mongo"
+      dockerfile: "Dockerfile-spboot"
     ports:
-      - "27017:27017"
-  angular:
-    build:
-      context: .
-      dockerfile: "Dockerfile-weblogic"
-    ports:
-      - "7001:7001"
-      - "7002:7002"
+      - "8080:8080"
     links:
-      - mssql
+      - mssql  
   mssql:
     build:
       context: .
