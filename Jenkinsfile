@@ -38,7 +38,7 @@ pipeline {
             steps {
                 echo 'Building Webservice Spring boot'
                 dir ('database/liquibase/'){
-                    sh '/home/admin/liquibase/liquibase --changeLogFile="changesets/db.changelog-master.xml" update'
+                    sh '$LIQUIBASE_PATH/liquibase --changeLogFile="changesets/db.changelog-master.xml" update'
                 }
             }
         }
@@ -79,8 +79,8 @@ pipeline {
     }
     post { 
         always { 
-            deleteDir()
             sh 'docker-compose down'
+            deleteDir()
         }
         success {
             echo 'I succeeeded!'
