@@ -38,7 +38,7 @@ pipeline {
             steps {
                 echo 'Building Webservice Spring boot'
                 dir ('database/liquibase/'){
-                    sh 'liquibase --changeLogFile="changesets/db.changelog-master.xml" update'
+                    sh '/home/admin/liquibase/liquibase --changeLogFile="changesets/db.changelog-master.xml" update'
                 }
             }
         }
