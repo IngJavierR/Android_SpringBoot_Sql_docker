@@ -33,7 +33,7 @@ pipeline {
         stage('Running Backend') {
             steps {
                 echo 'Running on Docker'
-                sh 'docker-compose up -d'
+                sh 'docker-compose up'
             }
         }
         stage('Liquibase') {
