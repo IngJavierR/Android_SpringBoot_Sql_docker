@@ -2,7 +2,7 @@ FROM store/microsoft/mssql-server-linux:2017-latest
 
 ENV SA_PASSWORD=Admin12345 \
     ACCEPT_EULA=Y
-
+RUN hostname
 RUN /opt/mssql/bin/sqlservr --accept-eula & sleep 15 \
-    && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -Q 'CREATE DATABASE GrupoRoga' \
+    && /opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U SA -P $SA_PASSWORD -Q 'CREATE DATABASE GrupoRoga' \
     && pkill sqlservr
