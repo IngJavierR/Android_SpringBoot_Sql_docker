@@ -85,6 +85,12 @@ Opciones para manipular Jenkins: sudo service jenkins start/stop/restart
 `sudo usermod -aG docker $USER`  
 NOTA: Hacer logout y despues login, para que los permisos sean evaluados nuevamente.
 
+13. Instalar docker-compose  
+`$ sudo yum install epel-release`  
+`$ sudo yum install -y python-pip`  
+`$ sudo pip install docker-compose`  
+`$ sudo yum upgrade python*`  
+
 ## Configurar Jenkins
 
 Pasos para la configuración de Jenkins en el servidor de despliegue:
@@ -108,7 +114,7 @@ Pasos para la configuración de Jenkins en el servidor de despliegue:
 
 9. Instalar el plugin de Bitbucket
 
- 
+
 
 
 ## Server
