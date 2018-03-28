@@ -33,7 +33,6 @@ pipeline {
         stage('Running Backend') {
             steps {
                 echo 'Running on Docker'
-                sh 'docker login -u ingjavierr -p PEIKNCSKDELL1985'
                 sh 'docker-compose up -d'
             }
         }
