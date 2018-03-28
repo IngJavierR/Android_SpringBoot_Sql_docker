@@ -44,7 +44,7 @@ pipeline {
                 }
             }
         }
-        stage('Expresso test') {
+        /*stage('Expresso test') {
             when {
                 not {
                     branch 'develop'
@@ -60,7 +60,7 @@ pipeline {
                 }
                 sh 'docker rm -f ${BUILD_TAG}'
             }
-        }
+        }*/
         stage('Publish') {
             when {
                 branch 'master'
