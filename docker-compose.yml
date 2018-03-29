@@ -1,5 +1,13 @@
 version: '3'
 services:
+  frontend:
+    build:
+      context: .
+      dockerfile: "Dockerfile-frontend"
+    ports:
+      - "80:80"
+    links:
+      - spboot  
   spboot:
     build:
       context: .
