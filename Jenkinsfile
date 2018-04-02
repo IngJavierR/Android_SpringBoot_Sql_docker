@@ -10,6 +10,7 @@ pipeline {
             steps {
                 echo 'Building Android'
                 dir ('android/'){
+                    sh 'export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk'
                     sh 'echo $JAVA_HOME'
                     sh 'echo sdk.dir=$ANDROID_HOME > local.properties'
                     sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses'
