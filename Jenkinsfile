@@ -11,7 +11,6 @@ pipeline {
             steps {
                 echo 'Building Android'
                 dir ('android/'){
-                    sh 'echo $JAVA_HOME'
                     sh 'echo sdk.dir=$ANDROID_HOME > local.properties'
                     sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses'
                     sh 'cp -R $ANDROID_HOME/licenses licenses/'
