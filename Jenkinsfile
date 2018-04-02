@@ -43,7 +43,7 @@ pipeline {
         stage('Running Front/Back') {
             steps {
                 echo 'Running on Docker'
-                //sh 'docker-compose down'
+                sh 'docker-compose down'
                 sh 'docker-compose up -d'
             }
         }
