@@ -1,7 +1,8 @@
 pipeline {
-    agent {
+    agent any
+    /*agent {
         label 'GrupoRoga1'
-    }
+    }*/
     tools {
         maven 'M3'
     }
