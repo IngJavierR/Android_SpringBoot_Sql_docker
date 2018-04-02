@@ -30,7 +30,16 @@ pipeline {
                 }
             }
         }
-        stage('Running Backend') {
+        stage('Build Angular') {
+            steps {
+                echo 'Building Frontend Angular'
+                dir ('frontend/'){
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
+        stage('Running Front/Back') {
             steps {
                 echo 'Running on Docker'
                 sh 'docker-compose up -d'

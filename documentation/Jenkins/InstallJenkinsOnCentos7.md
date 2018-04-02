@@ -9,6 +9,7 @@ En este documento de describe el proceso para instalar en jenkins en ambiente pa
 * [Instalar Android SDK](http://moonlightbox.logdown.com/posts/2016/02/01/linux-install-android-sdk-in-centos7-updated-2017-07-24)
 * [Instalar Liquibase](http://download.liquibase.org/download/)
 * [Instalar Docker CE Centos](https://docs.docker.com/install/linux/docker-ce/centos/)
+* [Instalar NodeJs v8](https://www.hugeserver.com/kb/install-nodejs8-centos7-debian8-ubuntu16/)
 
 ## Procedimiento
 
@@ -90,6 +91,15 @@ NOTA: Hacer logout y despues login, para que los permisos sean evaluados nuevame
 `$ sudo yum install -y python-pip`  
 `$ sudo pip install docker-compose`  
 `$ sudo yum upgrade python*`  
+
+14. Instalar NodeJs v8  
+`sudo curl -sL https://rpm.nodesource.com/setup_8.x | bash -`  
+`rpm -i --nosignature --force '/tmp/tmp.uq4T4izXFa'`  
+`sudo yum install nodejs`  
+
+15. Verificar instalacion Nodejs  
+`node --version` --> v8.\*.*  
+`npm --version` --> 5.\*.*  
 
 ## Configurar Jenkins
 
