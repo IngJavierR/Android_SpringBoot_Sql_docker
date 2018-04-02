@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'GrupoRoga1'
+        label 'GrupoRoga'
     }
     tools {
         maven 'M3'
