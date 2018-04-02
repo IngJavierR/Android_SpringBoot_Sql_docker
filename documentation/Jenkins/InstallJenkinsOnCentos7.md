@@ -94,7 +94,7 @@ NOTA: Hacer logout y despues login, para que los permisos sean evaluados nuevame
 
 14. Instalar NodeJs v8  
 `sudo curl -sL https://rpm.nodesource.com/setup_8.x | bash -`  
-`rpm -i --nosignature --force '/tmp/tmp.uq4T4izXFa'`  
+`rpm -i --nosignature --force '/tmp/tmp.*'` --> Si se presenta un error correr esta linea como sudo, reemplazar el * por el id que retorna el comando en la consola  
 `sudo yum install nodejs`  
 
 15. Verificar instalacion Nodejs  

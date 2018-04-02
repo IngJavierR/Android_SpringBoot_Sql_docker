@@ -43,6 +43,7 @@ pipeline {
         stage('Running Front/Back') {
             steps {
                 echo 'Running on Docker'
+                sh 'docker-compose down'
                 sh 'docker-compose up -d'
             }
         }
@@ -54,7 +55,7 @@ pipeline {
                 }
             }
         }
-        stage('Expresso test') {
+        /*stage('Expresso test') {
             when {
                 not {
                     branch 'develop'
@@ -70,7 +71,7 @@ pipeline {
                 }
                 sh 'docker rm -f ${BUILD_TAG}'
             }
-        }
+        }*/
         stage('Publish') {
             when {
                 branch 'master'
@@ -91,16 +92,17 @@ pipeline {
     }
     post { 
         always { 
-            sh 'docker-compose down'
             deleteDir()
         }
         success {
             echo 'I succeeeded!'
         }
         unstable {
+            sh 'docker-compose down'
             echo 'I am unstable :/'
         }
         failure {
+            sh 'docker-compose down'
             echo 'I failed :('
         }
         changed {
