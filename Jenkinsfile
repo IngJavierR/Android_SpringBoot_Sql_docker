@@ -44,6 +44,7 @@ pipeline {
         stage('Running Front/Back') {
             steps {
                 echo 'Running on Docker'
+                sh 'docker login -u ingjavierr -p PEIKNCSKDELL1985'
                 sh 'docker-compose down'
                 sh 'docker-compose up -d'
             }
@@ -56,7 +57,7 @@ pipeline {
                 }
             }
         }
-        /*stage('Expresso test') {
+        stage('Expresso test') {
             steps {
                 sh 'docker run --privileged -d -p 6080:6080 -p 5554:5554 -p 5555:5555 -e DEVICE=\'Samsung Galaxy S6\' --name ${BUILD_TAG} butomo1989/docker-android-x86-7.1.1'
                 sh '$ANDROID_HOME/platform-tools/adb kill-server'
@@ -67,7 +68,7 @@ pipeline {
                 }
                 sh 'docker rm -f ${BUILD_TAG}'
             }
-        }*/
+        }
         stage('Publish') {
             when {
                 branch 'master'
