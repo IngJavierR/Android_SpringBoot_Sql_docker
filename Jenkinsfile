@@ -44,7 +44,6 @@ pipeline {
         stage('Running Front/Back') {
             steps {
                 echo 'Running on Docker'
-                sh 'docker login -u ingjavierr -p PEIKNCSKDELL1985'
                 sh 'docker-compose down'
                 sh 'docker-compose up -d'
             }
